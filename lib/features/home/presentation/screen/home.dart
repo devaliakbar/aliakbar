@@ -14,73 +14,76 @@ class Home extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppColor.background,
-      body: SafeArea(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: _screenUtil.setWidth(30),
-              ),
-              child: ConstrainedBox(
-                constraints: BoxConstraints(
-                  minHeight: MediaQuery.of(context).size.height,
-                ),
-                child: Stack(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Ali Akbar",
-                          style: GoogleFonts.bebasNeue(
-                            textStyle: TextStyle(
-                              color: AppColor.grey,
-                              fontSize: _screenUtil.setSp(170),
-                              letterSpacing: -1 * _screenUtil.setWidth(5),
-                            ),
+      body: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: _screenUtil.setWidth(30),
+              vertical: _screenUtil.setWidth(20),
+            ),
+            child: Stack(
+              children: [
+                ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minHeight: MediaQuery.of(context).size.height -
+                        _screenUtil.setWidth(40),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Ali Akbar",
+                        style: GoogleFonts.bebasNeue(
+                          textStyle: TextStyle(
+                            color: AppColor.grey,
+                            fontSize: _screenUtil.setSp(170),
+                            letterSpacing: -1 * _screenUtil.setWidth(5),
+                            height: 1,
                           ),
                         ),
-                        Row(
-                          children: [
-                            Text(
-                              "Full",
-                              style: GoogleFonts.bebasNeue(
-                                textStyle: TextStyle(
-                                  color: AppColor.grey,
-                                  fontSize: _screenUtil.setSp(170),
-                                  letterSpacing: -1 * _screenUtil.setWidth(5),
-                                ),
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            "Full",
+                            style: GoogleFonts.bebasNeue(
+                              textStyle: TextStyle(
+                                color: AppColor.grey,
+                                fontSize: _screenUtil.setSp(170),
+                                letterSpacing: -1 * _screenUtil.setWidth(5),
+                                height: 1,
                               ),
                             ),
-                            Container(
-                              color: AppColor.grey,
-                              height: _screenUtil.setWidth(17),
-                              width: _screenUtil.setWidth(100),
-                            ),
-                            Text(
-                              "stack dev",
-                              style: GoogleFonts.bebasNeue(
-                                textStyle: TextStyle(
-                                  color: AppColor.grey,
-                                  fontSize: _screenUtil.setSp(170),
-                                  letterSpacing: -1 * _screenUtil.setWidth(5),
-                                ),
+                          ),
+                          Container(
+                            color: AppColor.grey,
+                            height: _screenUtil.setWidth(17),
+                            width: _screenUtil.setWidth(100),
+                          ),
+                          Text(
+                            "stack dev",
+                            style: GoogleFonts.bebasNeue(
+                              textStyle: TextStyle(
+                                color: AppColor.grey,
+                                fontSize: _screenUtil.setSp(170),
+                                letterSpacing: -1 * _screenUtil.setWidth(5),
+                                height: 1,
                               ),
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                    const Menu(),
-                    const Footer()
-                  ],
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
                 ),
-              ),
+                const Menu(),
+                const Footer()
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

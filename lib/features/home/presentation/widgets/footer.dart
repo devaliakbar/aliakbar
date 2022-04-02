@@ -10,7 +10,7 @@ class Footer extends StatelessWidget {
   Widget build(BuildContext context) {
     final _screenUtil = ScreenUtil();
     return Positioned(
-      bottom: 15,
+      bottom: 0,
       child: SizedBox(
         width: MediaQuery.of(context).size.width - _screenUtil.setWidth(60),
         child: Row(

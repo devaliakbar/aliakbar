@@ -34,7 +34,7 @@ class _MenuState extends State<Menu> with WidgetsBindingObserver {
     final _screenUtil = ScreenUtil();
     return Positioned(
       right: 0,
-      top: _screenUtil.setWidth(70),
+      top: _screenUtil.setWidth(50),
       child: SvgPicture.asset(
         "assets/images/menu.svg",
         color: AppColor.grey,
