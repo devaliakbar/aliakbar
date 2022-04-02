@@ -33,19 +33,14 @@ class _MenuState extends State<Menu> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    final _screenUtil = ScreenUtil();
-    return Positioned(
-      right: 0,
-      top: _screenUtil.setWidth(45),
-      child: CustomAnimation(
-        animationController: widget.animationController,
-        playAnimation: false,
-        customAnimationType: CustomAnimationType.rightToLeft,
-        widget: SvgPicture.asset(
-          "assets/images/menu.svg",
-          color: AppColor.grey,
-          width: _screenUtil.setSp(40),
-        ),
+    return CustomAnimation(
+      animationController: widget.animationController,
+      playAnimation: false,
+      customAnimationType: CustomAnimationType.rightToLeft,
+      widget: SvgPicture.asset(
+        "assets/images/menu.svg",
+        color: AppColor.grey,
+        width: ScreenUtil().setSp(40),
       ),
     );
   }

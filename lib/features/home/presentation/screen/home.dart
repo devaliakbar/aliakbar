@@ -71,21 +71,29 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      CustomAnimation(
-                        animationController: topAnimation,
-                        playAnimation: false,
-                        customAnimationType: CustomAnimationType.topToBottom,
-                        widget: Text(
-                          "Ali Akbar",
-                          style: GoogleFonts.bebasNeue(
-                            textStyle: TextStyle(
-                              color: AppColor.grey,
-                              fontSize: _screenUtil.setSp(170),
-                              letterSpacing: -1 * _screenUtil.setWidth(5),
-                              height: 1,
+                      Row(
+                        children: [
+                          Expanded(
+                            child: CustomAnimation(
+                              animationController: topAnimation,
+                              playAnimation: false,
+                              customAnimationType:
+                                  CustomAnimationType.topToBottom,
+                              widget: Text(
+                                "Ali Akbar",
+                                style: GoogleFonts.bebasNeue(
+                                  textStyle: TextStyle(
+                                    color: AppColor.grey,
+                                    fontSize: _screenUtil.setSp(170),
+                                    letterSpacing: -1 * _screenUtil.setWidth(5),
+                                    height: 1,
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
+                          Menu(animationController: optionsAnimation),
+                        ],
                       ),
                       CustomAnimation(
                         animationController: bottomAnimation,
@@ -129,7 +137,6 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                     ],
                   ),
                 ),
-                Menu(animationController: optionsAnimation),
                 Footer(
                   animationController: optionsAnimation,
                 )
