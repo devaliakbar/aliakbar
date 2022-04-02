@@ -62,7 +62,8 @@ class _MenuState extends State<Menu> {
               children: [
                 Row(
                   children: [
-                    Container(
+                    AnimatedContainer(
+                      duration: const Duration(milliseconds: 200),
                       height: _screenUtil.setWidth(isHover ? _size + 1 : _size),
                       width: _screenUtil.setWidth(isHover ? _size + 1 : _size),
                       decoration: BoxDecoration(
@@ -72,7 +73,8 @@ class _MenuState extends State<Menu> {
                         ),
                       ),
                     ),
-                    Container(
+                    AnimatedContainer(
+                      duration: const Duration(milliseconds: 200),
                       margin: EdgeInsets.symmetric(
                         horizontal: _screenUtil.setWidth(3.5),
                       ),
@@ -85,7 +87,8 @@ class _MenuState extends State<Menu> {
                         ),
                       ),
                     ),
-                    Container(
+                    AnimatedContainer(
+                      duration: const Duration(milliseconds: 200),
                       height: _screenUtil.setWidth(isHover ? _size + 1 : _size),
                       width: _screenUtil.setWidth(isHover ? _size + 1 : _size),
                       decoration: BoxDecoration(
@@ -99,7 +102,8 @@ class _MenuState extends State<Menu> {
                 ),
                 Row(
                   children: [
-                    Container(
+                    AnimatedContainer(
+                      duration: const Duration(milliseconds: 200),
                       height: _screenUtil.setWidth(isHover ? _size + 1 : _size),
                       width: _screenUtil.setWidth(isHover ? _size + 1 : _size),
                       decoration: BoxDecoration(
@@ -114,7 +118,8 @@ class _MenuState extends State<Menu> {
                       valueListenable: _colorChangeNotifire,
                       builder:
                           (BuildContext context, bool value, Widget? child) =>
-                              Container(
+                              AnimatedContainer(
+                        duration: const Duration(milliseconds: 200),
                         margin: EdgeInsets.all(
                           _screenUtil.setWidth(3.5),
                         ),
@@ -132,7 +137,8 @@ class _MenuState extends State<Menu> {
                         ),
                       ),
                     ),
-                    Container(
+                    AnimatedContainer(
+                      duration: const Duration(milliseconds: 200),
                       height: _screenUtil.setWidth(isHover ? _size + 1 : _size),
                       width: _screenUtil.setWidth(isHover ? _size + 1 : _size),
                       decoration: BoxDecoration(
@@ -146,7 +152,8 @@ class _MenuState extends State<Menu> {
                 ),
                 Row(
                   children: [
-                    Container(
+                    AnimatedContainer(
+                      duration: const Duration(milliseconds: 200),
                       height: _screenUtil.setWidth(isHover ? _size + 1 : _size),
                       width: _screenUtil.setWidth(isHover ? _size + 1 : _size),
                       decoration: BoxDecoration(
@@ -156,7 +163,8 @@ class _MenuState extends State<Menu> {
                         ),
                       ),
                     ),
-                    Container(
+                    AnimatedContainer(
+                      duration: const Duration(milliseconds: 200),
                       margin: EdgeInsets.symmetric(
                         horizontal: _screenUtil.setWidth(3.5),
                       ),
@@ -169,7 +177,8 @@ class _MenuState extends State<Menu> {
                         ),
                       ),
                     ),
-                    Container(
+                    AnimatedContainer(
+                      duration: const Duration(milliseconds: 200),
                       height: _screenUtil.setWidth(isHover ? _size + 1 : _size),
                       width: _screenUtil.setWidth(isHover ? _size + 1 : _size),
                       decoration: BoxDecoration(
