@@ -17,6 +17,7 @@ class CustomIconButton extends StatefulWidget {
 
 class _CustomIconButtonState extends State<CustomIconButton> {
   final ValueNotifier<bool> _isHover = ValueNotifier(false);
+  final _screenUtil = ScreenUtil();
 
   @override
   void dispose() {
@@ -39,10 +40,16 @@ class _CustomIconButtonState extends State<CustomIconButton> {
         valueListenable: _isHover,
         builder: (BuildContext context, bool isHover, Widget? child) => Tapped(
           onTap: widget.onClick,
-          child: SvgPicture.asset(
-            widget.icon,
-            width: ScreenUtil().setWidth(isHover ? 13 : 12),
-            color: isHover ? AppColor.textColor : AppColor.grey,
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: _screenUtil.setWidth(15),
+              minWidth: _screenUtil.setWidth(13),
+            ),
+            child: SvgPicture.asset(
+              widget.icon,
+              width: _screenUtil.setWidth(isHover ? 13 : 12),
+              color: isHover ? AppColor.textColor : AppColor.grey,
+            ),
           ),
         ),
       ),
