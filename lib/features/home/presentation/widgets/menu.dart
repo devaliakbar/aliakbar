@@ -1,8 +1,10 @@
+import 'dart:async';
+
 import 'package:aliakbar/core/animation/custom_animation.dart';
 import 'package:aliakbar/core/theme/app_theme.dart';
+import 'package:aliakbar/features/home/presentation/widgets/tapped.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class Menu extends StatefulWidget {
   final AnimationController animationController;
@@ -12,35 +14,177 @@ class Menu extends StatefulWidget {
   State<Menu> createState() => _MenuState();
 }
 
-class _MenuState extends State<Menu> with WidgetsBindingObserver {
+class _MenuState extends State<Menu> {
+  static const double _size = 12;
+  final ValueNotifier<bool> _colorChangeNotifire = ValueNotifier(false);
+  final ValueNotifier<bool> _isHover = ValueNotifier(false);
+  late final Timer _timer;
+
   @override
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance!.addObserver(this);
+    _timer = Timer.periodic(const Duration(milliseconds: 500), (_) {
+      _colorChangeNotifire.value = !_colorChangeNotifire.value;
+    });
   }
 
   @override
   void dispose() {
-    WidgetsBinding.instance!.removeObserver(this);
+    _timer.cancel();
+    _colorChangeNotifire.dispose();
+
     super.dispose();
   }
 
   @override
-  void didChangeMetrics() {
-    setState(() {});
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final _screenUtil = ScreenUtil();
+
     return CustomAnimation(
       animationController: widget.animationController,
       playAnimation: false,
       customAnimationType: CustomAnimationType.rightToLeft,
-      widget: SvgPicture.asset(
-        "assets/images/menu.svg",
-        color: AppColor.grey,
-        width: ScreenUtil().setSp(40),
+      widget: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        onEnter: (_) {
+          _isHover.value = true;
+        },
+        onExit: (_) {
+          _isHover.value = false;
+        },
+        child: ValueListenableBuilder<bool>(
+          valueListenable: _isHover,
+          builder: (BuildContext context, bool isHover, Widget? child) =>
+              Tapped(
+            onTap: () {},
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      height: _screenUtil.setWidth(isHover ? _size + 1 : _size),
+                      width: _screenUtil.setWidth(isHover ? _size + 1 : _size),
+                      decoration: BoxDecoration(
+                        color: isHover ? AppColor.textColor : AppColor.grey,
+                        borderRadius: BorderRadius.circular(
+                          _screenUtil.setWidth(2),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.symmetric(
+                        horizontal: _screenUtil.setWidth(3.5),
+                      ),
+                      height: _screenUtil.setWidth(isHover ? _size + 1 : _size),
+                      width: _screenUtil.setWidth(isHover ? _size + 1 : _size),
+                      decoration: BoxDecoration(
+                        color: isHover ? AppColor.textColor : AppColor.grey,
+                        borderRadius: BorderRadius.circular(
+                          _screenUtil.setWidth(2),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: _screenUtil.setWidth(isHover ? _size + 1 : _size),
+                      width: _screenUtil.setWidth(isHover ? _size + 1 : _size),
+                      decoration: BoxDecoration(
+                        color: isHover ? AppColor.textColor : AppColor.grey,
+                        borderRadius: BorderRadius.circular(
+                          _screenUtil.setWidth(2),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                Row(
+                  children: [
+                    Container(
+                      height: _screenUtil.setWidth(isHover ? _size + 1 : _size),
+                      width: _screenUtil.setWidth(isHover ? _size + 1 : _size),
+                      decoration: BoxDecoration(
+                        color: isHover ? AppColor.textColor : AppColor.grey,
+                        borderRadius: BorderRadius.circular(
+                          _screenUtil.setWidth(2),
+                        ),
+                      ),
+                    ),
+                    //Center
+                    ValueListenableBuilder<bool>(
+                      valueListenable: _colorChangeNotifire,
+                      builder:
+                          (BuildContext context, bool value, Widget? child) =>
+                              Container(
+                        margin: EdgeInsets.all(
+                          _screenUtil.setWidth(3.5),
+                        ),
+                        height:
+                            _screenUtil.setWidth(isHover ? _size + 1 : _size),
+                        width:
+                            _screenUtil.setWidth(isHover ? _size + 1 : _size),
+                        decoration: BoxDecoration(
+                          color: (value || isHover)
+                              ? AppColor.textColor
+                              : AppColor.grey,
+                          borderRadius: BorderRadius.circular(
+                            _screenUtil.setWidth(2),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: _screenUtil.setWidth(isHover ? _size + 1 : _size),
+                      width: _screenUtil.setWidth(isHover ? _size + 1 : _size),
+                      decoration: BoxDecoration(
+                        color: isHover ? AppColor.textColor : AppColor.grey,
+                        borderRadius: BorderRadius.circular(
+                          _screenUtil.setWidth(2),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                Row(
+                  children: [
+                    Container(
+                      height: _screenUtil.setWidth(isHover ? _size + 1 : _size),
+                      width: _screenUtil.setWidth(isHover ? _size + 1 : _size),
+                      decoration: BoxDecoration(
+                        color: isHover ? AppColor.textColor : AppColor.grey,
+                        borderRadius: BorderRadius.circular(
+                          _screenUtil.setWidth(2),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.symmetric(
+                        horizontal: _screenUtil.setWidth(3.5),
+                      ),
+                      height: _screenUtil.setWidth(isHover ? _size + 1 : _size),
+                      width: _screenUtil.setWidth(isHover ? _size + 1 : _size),
+                      decoration: BoxDecoration(
+                        color: isHover ? AppColor.textColor : AppColor.grey,
+                        borderRadius: BorderRadius.circular(
+                          _screenUtil.setWidth(2),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: _screenUtil.setWidth(isHover ? _size + 1 : _size),
+                      width: _screenUtil.setWidth(isHover ? _size + 1 : _size),
+                      decoration: BoxDecoration(
+                        color: isHover ? AppColor.textColor : AppColor.grey,
+                        borderRadius: BorderRadius.circular(
+                          _screenUtil.setWidth(2),
+                        ),
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
