@@ -1,9 +1,8 @@
 import 'package:aliakbar/core/animation/custom_animation.dart';
-import 'package:aliakbar/core/theme/app_theme.dart';
+import 'package:aliakbar/features/home/presentation/widgets/custom_icon_button.dart';
 import 'package:aliakbar/features/home/presentation/widgets/footer/arrow_right.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 
 class Footer extends StatelessWidget {
   final AnimationController animationController;
@@ -21,26 +20,23 @@ class Footer extends StatelessWidget {
           customAnimationType: CustomAnimationType.leftToRight,
           widget: Row(
             children: [
-              SvgPicture.asset(
-                "assets/images/linkedin.svg",
-                width: _screenUtil.setWidth(12),
-                color: AppColor.grey,
+              CustomIconButton(
+                onClick: () {},
+                icon: "assets/images/linkedin.svg",
               ),
               SizedBox(
                 width: _screenUtil.setWidth(15),
               ),
-              SvgPicture.asset(
-                "assets/images/github.svg",
-                width: _screenUtil.setWidth(12),
-                color: AppColor.grey,
+              CustomIconButton(
+                onClick: () {},
+                icon: "assets/images/github.svg",
               ),
               SizedBox(
                 width: _screenUtil.setWidth(15),
               ),
-              SvgPicture.asset(
-                "assets/images/instagram.svg",
-                width: _screenUtil.setWidth(12),
-                color: AppColor.grey,
+              CustomIconButton(
+                onClick: () {},
+                icon: "assets/images/instagram.svg",
               ),
             ],
           ),

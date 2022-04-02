@@ -32,6 +32,7 @@ class _MenuState extends State<Menu> {
   @override
   void dispose() {
     _timer.cancel();
+    _isHover.dispose();
     _colorChangeNotifire.dispose();
 
     super.dispose();
@@ -113,7 +114,6 @@ class _MenuState extends State<Menu> {
                         ),
                       ),
                     ),
-                    //Center
                     ValueListenableBuilder<bool>(
                       valueListenable: _colorChangeNotifire,
                       builder:
