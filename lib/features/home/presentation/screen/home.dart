@@ -60,87 +60,82 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               horizontal: _screenUtil.setWidth(30),
               vertical: _screenUtil.setWidth(20),
             ),
-            child: Stack(
-              children: [
-                ConstrainedBox(
-                  constraints: BoxConstraints(
-                    minHeight: MediaQuery.of(context).size.height -
-                        _screenUtil.setWidth(40),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: MediaQuery.of(context).size.height -
+                    _screenUtil.setWidth(40),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
                     children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            child: CustomAnimation(
-                              animationController: topAnimation,
-                              playAnimation: false,
-                              customAnimationType:
-                                  CustomAnimationType.topToBottom,
-                              widget: Text(
-                                "Ali Akbar",
-                                style: GoogleFonts.bebasNeue(
-                                  textStyle: TextStyle(
-                                    color: AppColor.grey,
-                                    fontSize: _screenUtil.setSp(170),
-                                    letterSpacing: -1 * _screenUtil.setWidth(5),
-                                    height: 1,
-                                  ),
-                                ),
+                      Expanded(
+                        child: CustomAnimation(
+                          animationController: topAnimation,
+                          playAnimation: false,
+                          customAnimationType: CustomAnimationType.topToBottom,
+                          widget: Text(
+                            "Ali Akbar",
+                            style: GoogleFonts.bebasNeue(
+                              textStyle: TextStyle(
+                                color: AppColor.grey,
+                                fontSize: _screenUtil.setSp(170),
+                                letterSpacing: -1 * _screenUtil.setWidth(5),
+                                height: 1,
                               ),
                             ),
                           ),
-                          Menu(animationController: optionsAnimation),
-                        ],
-                      ),
-                      CustomAnimation(
-                        animationController: bottomAnimation,
-                        playAnimation: false,
-                        customAnimationType: CustomAnimationType.bottomToTop,
-                        widget: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              Text(
-                                "Full",
-                                style: GoogleFonts.bebasNeue(
-                                  textStyle: TextStyle(
-                                    color: AppColor.grey,
-                                    fontSize: _screenUtil.setSp(170),
-                                    letterSpacing: -1 * _screenUtil.setWidth(5),
-                                    height: 1,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                color: AppColor.grey,
-                                height: _screenUtil.setWidth(17),
-                                width: _screenUtil.setWidth(100),
-                              ),
-                              Text(
-                                "stack dev",
-                                style: GoogleFonts.bebasNeue(
-                                  textStyle: TextStyle(
-                                    color: AppColor.grey,
-                                    fontSize: _screenUtil.setSp(170),
-                                    letterSpacing: -1 * _screenUtil.setWidth(5),
-                                    height: 1,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
                         ),
                       ),
+                      Menu(animationController: optionsAnimation),
                     ],
                   ),
-                ),
-                Footer(
-                  animationController: optionsAnimation,
-                )
-              ],
+                  CustomAnimation(
+                    animationController: bottomAnimation,
+                    playAnimation: false,
+                    customAnimationType: CustomAnimationType.bottomToTop,
+                    widget: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          Text(
+                            "Full",
+                            style: GoogleFonts.bebasNeue(
+                              textStyle: TextStyle(
+                                color: AppColor.grey,
+                                fontSize: _screenUtil.setSp(170),
+                                letterSpacing: -1 * _screenUtil.setWidth(5),
+                                height: 1,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            color: AppColor.grey,
+                            height: _screenUtil.setWidth(17),
+                            width: _screenUtil.setWidth(100),
+                          ),
+                          Text(
+                            "stack dev",
+                            style: GoogleFonts.bebasNeue(
+                              textStyle: TextStyle(
+                                color: AppColor.grey,
+                                fontSize: _screenUtil.setSp(170),
+                                letterSpacing: -1 * _screenUtil.setWidth(5),
+                                height: 1,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  Footer(
+                    animationController: optionsAnimation,
+                  )
+                ],
+              ),
             ),
           ),
         ],
