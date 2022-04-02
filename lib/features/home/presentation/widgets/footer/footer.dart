@@ -1,5 +1,6 @@
 import 'package:aliakbar/core/animation/custom_animation.dart';
 import 'package:aliakbar/core/theme/app_theme.dart';
+import 'package:aliakbar/features/home/presentation/widgets/footer/arrow_right.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -53,11 +54,7 @@ class Footer extends StatelessWidget {
               animationController: animationController,
               playAnimation: false,
               customAnimationType: CustomAnimationType.rightToLeft,
-              widget: SvgPicture.asset(
-                "assets/images/arrow-right.svg",
-                width: _screenUtil.setWidth(35),
-                color: AppColor.grey,
-              ),
+              widget: const ArrowRight(),
             ),
           ],
         ),

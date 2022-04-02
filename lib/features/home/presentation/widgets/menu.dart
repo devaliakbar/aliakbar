@@ -36,7 +36,7 @@ class _MenuState extends State<Menu> with WidgetsBindingObserver {
     final _screenUtil = ScreenUtil();
     return Positioned(
       right: 0,
-      top: _screenUtil.setWidth(50),
+      top: _screenUtil.setWidth(45),
       child: CustomAnimation(
         animationController: widget.animationController,
         playAnimation: false,

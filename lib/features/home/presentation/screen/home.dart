@@ -1,6 +1,6 @@
 import 'package:aliakbar/core/animation/custom_animation.dart';
 import 'package:aliakbar/core/theme/app_theme.dart';
-import 'package:aliakbar/features/home/presentation/widgets/footer.dart';
+import 'package:aliakbar/features/home/presentation/widgets/footer/footer.dart';
 import 'package:aliakbar/features/home/presentation/widgets/menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
