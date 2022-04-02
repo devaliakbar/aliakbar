@@ -32,7 +32,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
         duration: const Duration(milliseconds: 200), vsync: this);
 
     Future.delayed(
-      const Duration(seconds: 2),
+      const Duration(milliseconds: 1500),
     ).then((value) => topAnimation.forward().whenComplete(() => bottomAnimation
         .forward()
         .whenComplete(() => optionsAnimation.forward())));
