@@ -28,7 +28,7 @@ class _CustomIconButtonState extends State<CustomIconButton>
     super.initState();
 
     _controller = AnimationController(
-        duration: const Duration(milliseconds: 300), vsync: this);
+        duration: const Duration(milliseconds: 200), vsync: this);
 
     _animation = Tween<double>(begin: 1.0, end: 1.1)
         .animate(CurvedAnimation(parent: _controller, curve: Curves.linear));
