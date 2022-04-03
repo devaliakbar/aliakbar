@@ -9,12 +9,24 @@ class Hyphen extends StatefulWidget {
   State<Hyphen> createState() => _HyphenState();
 }
 
-class _HyphenState extends State<Hyphen> {
+class _HyphenState extends State<Hyphen> with WidgetsBindingObserver {
   final ScreenUtil _screenUtil = ScreenUtil();
   final ValueNotifier<bool> _isHover = ValueNotifier(false);
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance!.addObserver(this);
+  }
+
+  @override
+  void didChangeMetrics() {
+    setState(() {});
+  }
 
   @override
   void dispose() {
+    WidgetsBinding.instance!.removeObserver(this);
     _isHover.dispose();
     super.dispose();
   }
