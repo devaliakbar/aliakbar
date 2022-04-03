@@ -38,16 +38,16 @@ class _CustomIconButtonState extends State<CustomIconButton> {
       },
       child: ValueListenableBuilder<bool>(
         valueListenable: _isHover,
-        builder: (BuildContext context, bool isHover, Widget? child) => Tapped(
-          onTap: widget.onClick,
-          child: ConstrainedBox(
-            constraints: BoxConstraints(
-              minHeight: _screenUtil.setWidth(15),
-              minWidth: _screenUtil.setWidth(13),
-            ),
+        builder: (BuildContext context, bool isHover, Widget? child) =>
+            Transform(
+          alignment: FractionalOffset.center,
+          transform: Matrix4.identity()
+            ..scale(isHover ? 1.1 : 1.0, isHover ? 1.1 : 1.0),
+          child: Tapped(
+            onTap: widget.onClick,
             child: SvgPicture.asset(
               widget.icon,
-              width: _screenUtil.setWidth(isHover ? 13 : 12),
+              width: _screenUtil.setWidth(12),
               color: isHover ? AppColor.textColor : AppColor.grey,
             ),
           ),
