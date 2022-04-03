@@ -24,8 +24,10 @@ class _MenuState extends State<Menu> {
   void initState() {
     super.initState();
 
-    _timer = Timer.periodic(const Duration(milliseconds: 500), (_) {
-      _colorChangeNotifire.value = !_colorChangeNotifire.value;
+    Future.delayed(const Duration(seconds: 3)).then((value) {
+      _timer = Timer.periodic(const Duration(milliseconds: 500), (_) {
+        _colorChangeNotifire.value = !_colorChangeNotifire.value;
+      });
     });
   }
 

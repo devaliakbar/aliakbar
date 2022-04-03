@@ -23,7 +23,7 @@ class _ArrowRightState extends State<ArrowRight>
     super.initState();
 
     _animationController = AnimationController(
-        duration: const Duration(milliseconds: 400), vsync: this);
+        duration: const Duration(milliseconds: 500), vsync: this);
 
     Animation<double> _curve =
         CurvedAnimation(parent: _animationController, curve: Curves.linear);
@@ -38,7 +38,7 @@ class _ArrowRightState extends State<ArrowRight>
         if (isFromLeft) {
           isFromLeft = false;
 
-          await Future.delayed(const Duration(milliseconds: 400));
+          await Future.delayed(const Duration(milliseconds: 500));
           offset = const Offset(2, 0);
           _offset =
               Tween(begin: const Offset(0, 0), end: offset).animate(_curve);
@@ -57,7 +57,9 @@ class _ArrowRightState extends State<ArrowRight>
       }
     });
 
-    _animationController.forward();
+    Future.delayed(const Duration(milliseconds: 3500)).then((value) {
+      _animationController.forward();
+    });
   }
 
   @override

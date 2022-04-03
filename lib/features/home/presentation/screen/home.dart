@@ -48,6 +48,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   void dispose() {
     topAnimation.dispose();
     bottomAnimation.dispose();
+    menuAnimation.dispose();
+    footerAnimation.dispose();
 
     super.dispose();
   }
