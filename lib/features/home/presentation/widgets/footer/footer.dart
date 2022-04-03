@@ -3,6 +3,7 @@ import 'package:aliakbar/features/home/presentation/widgets/custom_icon_button.d
 import 'package:aliakbar/features/home/presentation/widgets/footer/arrow_right.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Footer extends StatelessWidget {
   final AnimationController animationController;
@@ -21,21 +22,27 @@ class Footer extends StatelessWidget {
           widget: Row(
             children: [
               CustomIconButton(
-                onClick: () {},
+                onClick: () async {
+                  await launch("https://www.linkedin.com/in/aliakbarpa/");
+                },
                 icon: "assets/images/linkedin.svg",
               ),
               SizedBox(
                 width: _screenUtil.setWidth(15),
               ),
               CustomIconButton(
-                onClick: () {},
+                onClick: () async {
+                  await launch("https://github.com/devaliakbar");
+                },
                 icon: "assets/images/github.svg",
               ),
               SizedBox(
                 width: _screenUtil.setWidth(15),
               ),
               CustomIconButton(
-                onClick: () {},
+                onClick: () async {
+                  await launch("https://www.instagram.com/iamakber/");
+                },
                 icon: "assets/images/instagram.svg",
               ),
             ],
