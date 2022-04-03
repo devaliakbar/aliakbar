@@ -14,6 +14,7 @@ class _ArrowRightState extends State<ArrowRight>
     with SingleTickerProviderStateMixin {
   late final AnimationController _animationController;
   late Animation<Offset> _offset;
+  late Animation<double> _opacityAnimation;
 
   bool isFromLeft = false;
 
@@ -27,9 +28,10 @@ class _ArrowRightState extends State<ArrowRight>
     Animation<double> _curve =
         CurvedAnimation(parent: _animationController, curve: Curves.linear);
 
-    Offset offset = const Offset(2, 0);
+    Offset offset = const Offset(1, 0);
 
     _offset = Tween(begin: const Offset(0, 0), end: offset).animate(_curve);
+    _opacityAnimation = Tween<double>(begin: 1, end: 0).animate(_curve);
 
     _animationController.addStatusListener((status) async {
       if (status == AnimationStatus.completed) {
@@ -40,6 +42,7 @@ class _ArrowRightState extends State<ArrowRight>
           offset = const Offset(2, 0);
           _offset =
               Tween(begin: const Offset(0, 0), end: offset).animate(_curve);
+          _opacityAnimation = Tween<double>(begin: 1, end: 0).animate(_curve);
           _animationController.reset();
           _animationController.forward();
         } else {
@@ -47,6 +50,7 @@ class _ArrowRightState extends State<ArrowRight>
           offset = const Offset(-1, 0);
           _offset =
               Tween(begin: offset, end: const Offset(0, 0)).animate(_curve);
+          _opacityAnimation = Tween<double>(begin: 0, end: 1).animate(_curve);
           _animationController.reset();
           _animationController.forward();
         }
@@ -70,10 +74,13 @@ class _ArrowRightState extends State<ArrowRight>
       builder: (BuildContext context, _) {
         return SlideTransition(
           position: _offset,
-          child: SvgPicture.asset(
-            "assets/images/arrow-right.svg",
-            width: ScreenUtil().setWidth(35),
-            color: AppColor.grey,
+          child: Opacity(
+            opacity: _opacityAnimation.value,
+            child: SvgPicture.asset(
+              "assets/images/arrow-right.svg",
+              width: ScreenUtil().setWidth(35),
+              color: AppColor.grey,
+            ),
           ),
         );
       },
