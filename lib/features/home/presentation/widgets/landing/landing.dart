@@ -28,7 +28,7 @@ class _LandingState extends State<Landing> with TickerProviderStateMixin {
         duration: const Duration(milliseconds: 500), vsync: this);
 
     bottomAnimation = AnimationController(
-        duration: const Duration(milliseconds: 400), vsync: this);
+        duration: const Duration(milliseconds: 500), vsync: this);
 
     menuAnimation = AnimationController(
         duration: const Duration(milliseconds: 300), vsync: this);

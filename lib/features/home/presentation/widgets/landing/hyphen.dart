@@ -9,14 +9,22 @@ class Hyphen extends StatefulWidget {
   State<Hyphen> createState() => _HyphenState();
 }
 
-class _HyphenState extends State<Hyphen> with WidgetsBindingObserver {
+class _HyphenState extends State<Hyphen>
+    with WidgetsBindingObserver, SingleTickerProviderStateMixin {
   final ScreenUtil _screenUtil = ScreenUtil();
-  final ValueNotifier<bool> _isHover = ValueNotifier(false);
+  late final Animation<Color?> _colorAnimation;
+  late final AnimationController _animationController;
+
   @override
   void initState() {
     super.initState();
 
     WidgetsBinding.instance!.addObserver(this);
+
+    _animationController = AnimationController(
+        duration: const Duration(milliseconds: 200), vsync: this);
+    _colorAnimation = ColorTween(begin: AppColor.grey, end: AppColor.textColor)
+        .animate(_animationController);
   }
 
   @override
@@ -27,7 +35,7 @@ class _HyphenState extends State<Hyphen> with WidgetsBindingObserver {
   @override
   void dispose() {
     WidgetsBinding.instance!.removeObserver(this);
-    _isHover.dispose();
+    _animationController.dispose();
     super.dispose();
   }
 
@@ -35,16 +43,15 @@ class _HyphenState extends State<Hyphen> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return MouseRegion(
       onEnter: (_) {
-        _isHover.value = true;
+        _animationController.forward();
       },
       onExit: (_) {
-        _isHover.value = false;
+        _animationController.reverse();
       },
-      child: ValueListenableBuilder<bool>(
-        valueListenable: _isHover,
-        builder: (BuildContext context, bool isHover, Widget? child) =>
-            Container(
-          color: isHover ? AppColor.textColor : AppColor.grey,
+      child: AnimatedBuilder(
+        animation: _animationController,
+        builder: (BuildContext context, _) => Container(
+          color: _colorAnimation.value,
           height: _screenUtil.setWidth(17),
           width: _screenUtil.setWidth(100),
         ),
