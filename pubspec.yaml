@@ -18,6 +18,7 @@ dependencies:
   flutter_screenutil: ^5.3.1
   flutter_svg: ^1.0.3
   url_launcher: ^6.0.20
+  provider: ^6.0.2
 
 dev_dependencies:
   flutter_test:
