@@ -15,12 +15,28 @@ class CustomIconButton extends StatefulWidget {
   State<CustomIconButton> createState() => _CustomIconButtonState();
 }
 
-class _CustomIconButtonState extends State<CustomIconButton> {
+class _CustomIconButtonState extends State<CustomIconButton>
+    with SingleTickerProviderStateMixin {
   final ValueNotifier<bool> _isHover = ValueNotifier(false);
   final _screenUtil = ScreenUtil();
 
+  late final AnimationController _controller;
+  late final Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+        duration: const Duration(milliseconds: 300), vsync: this);
+
+    _animation = Tween<double>(begin: 1.0, end: 1.1)
+        .animate(CurvedAnimation(parent: _controller, curve: Curves.linear));
+  }
+
   @override
   void dispose() {
+    _controller.dispose();
     _isHover.dispose();
 
     super.dispose();
@@ -31,18 +47,24 @@ class _CustomIconButtonState extends State<CustomIconButton> {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       onEnter: (_) {
+        _controller.forward();
         _isHover.value = true;
       },
       onExit: (_) {
+        _controller.reverse();
         _isHover.value = false;
       },
       child: ValueListenableBuilder<bool>(
         valueListenable: _isHover,
         builder: (BuildContext context, bool isHover, Widget? child) =>
-            Transform(
-          alignment: FractionalOffset.center,
-          transform: Matrix4.identity()
-            ..scale(isHover ? 1.1 : 1.0, isHover ? 1.1 : 1.0),
+            AnimatedBuilder(
+          animation: _controller,
+          builder: (BuildContext context, child) => Transform(
+            alignment: FractionalOffset.center,
+            transform: Matrix4.identity()
+              ..scale(_animation.value, _animation.value),
+            child: child,
+          ),
           child: Tapped(
             onTap: widget.onClick,
             child: SvgPicture.asset(

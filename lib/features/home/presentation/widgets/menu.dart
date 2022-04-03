@@ -14,21 +14,30 @@ class Menu extends StatefulWidget {
   State<Menu> createState() => _MenuState();
 }
 
-class _MenuState extends State<Menu> {
+class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
   static const double _size = 12;
   final ValueNotifier<bool> _colorChangeNotifire = ValueNotifier(false);
   final ValueNotifier<bool> _isHover = ValueNotifier(false);
   late final Timer _timer;
+
+  late final AnimationController _controller;
+  late final Animation<double> _animation;
 
   @override
   void initState() {
     super.initState();
 
     Future.delayed(const Duration(seconds: 3)).then((value) {
-      _timer = Timer.periodic(const Duration(milliseconds: 500), (_) {
+      _timer = Timer.periodic(const Duration(milliseconds: 600), (_) {
         _colorChangeNotifire.value = !_colorChangeNotifire.value;
       });
     });
+
+    _controller = AnimationController(
+        duration: const Duration(milliseconds: 300), vsync: this);
+
+    _animation = Tween<double>(begin: 1.0, end: 1.1)
+        .animate(CurvedAnimation(parent: _controller, curve: Curves.linear));
   }
 
   @override
@@ -36,6 +45,7 @@ class _MenuState extends State<Menu> {
     _timer.cancel();
     _isHover.dispose();
     _colorChangeNotifire.dispose();
+    _controller.dispose();
 
     super.dispose();
   }
@@ -51,19 +61,24 @@ class _MenuState extends State<Menu> {
       widget: MouseRegion(
         cursor: SystemMouseCursors.click,
         onEnter: (_) {
+          _controller.forward();
           _isHover.value = true;
         },
         onExit: (_) {
+          _controller.reverse();
           _isHover.value = false;
         },
-        child: ValueListenableBuilder<bool>(
-          valueListenable: _isHover,
-          builder: (BuildContext context, bool isHover, Widget? child) =>
-              Transform(
-            alignment: FractionalOffset.center,
-            transform: Matrix4.identity()
-              ..scale(isHover ? 1.1 : 1.0, isHover ? 1.1 : 1.0),
-            child: Tapped(
+        child: AnimatedBuilder(
+          animation: _controller,
+          builder: (BuildContext context, child) => Transform(
+              alignment: FractionalOffset.center,
+              transform: Matrix4.identity()
+                ..scale(_animation.value, _animation.value),
+              child: child),
+          child: ValueListenableBuilder<bool>(
+            valueListenable: _isHover,
+            builder: (BuildContext context, bool isHover, Widget? child) =>
+                Tapped(
               onTap: () {},
               child: Column(
                 children: [
