@@ -2,12 +2,18 @@ import 'package:flutter/material.dart';
 
 ///FOR BASIC ANIMATIONS
 
-enum CustomAnimationType { leftToRight, rightToLeft, topToBottom, bottomToTop }
+enum CustomAnimationType {
+  leftToRight,
+  rightToLeft,
+  topToBottom,
+  bottomToTop,
+  fadeIn,
+}
 
 class CustomAnimation extends StatefulWidget {
   final Widget widget;
   final CustomAnimationType customAnimationType;
-  final bool opacityEffect;
+  final bool opacityEffectForSlideAnimation;
   final Duration animationDuration;
   final AnimationController? animationController;
   final bool playAnimation;
@@ -18,7 +24,7 @@ class CustomAnimation extends StatefulWidget {
     Key? key,
     required this.widget,
     required this.customAnimationType,
-    this.opacityEffect = true,
+    this.opacityEffectForSlideAnimation = true,
     this.animationDuration = const Duration(milliseconds: 300),
     this.animationController,
     this.playAnimation = true,
@@ -35,7 +41,7 @@ class CustomAnimation extends StatefulWidget {
 
 class _CustomAnimationState extends State<CustomAnimation>
     with SingleTickerProviderStateMixin {
-  late Animation<Offset> _offset;
+  late Animation<Offset>? _offset;
   Animation<double>? _opacityAnimation;
   late final AnimationController _controller;
 
@@ -81,10 +87,14 @@ class _CustomAnimationState extends State<CustomAnimation>
         _offset = Tween(begin: offset, end: const Offset(0, 0)).animate(_curve);
       });
     } else {
-      _offset = Tween(begin: offset, end: const Offset(0, 0)).animate(_curve);
-
-      if (widget.opacityEffect) {
+      if (widget.customAnimationType == CustomAnimationType.fadeIn) {
         _opacityAnimation = Tween<double>(begin: 0, end: 1).animate(_curve);
+      } else {
+        _offset = Tween(begin: offset, end: const Offset(0, 0)).animate(_curve);
+
+        if (widget.opacityEffectForSlideAnimation) {
+          _opacityAnimation = Tween<double>(begin: 0, end: 1).animate(_curve);
+        }
       }
     }
 
@@ -98,14 +108,21 @@ class _CustomAnimationState extends State<CustomAnimation>
     return AnimatedBuilder(
       animation: _controller,
       builder: (BuildContext context, _) {
-        return SlideTransition(
-          position: _offset,
-          child: _opacityAnimation == null
-              ? widget.widget
-              : Opacity(
-                  opacity: _opacityAnimation!.value,
-                  child: widget.widget,
-                ),
+        if (widget.customAnimationType != CustomAnimationType.fadeIn) {
+          return SlideTransition(
+            position: _offset!,
+            child: _opacityAnimation == null
+                ? widget.widget
+                : Opacity(
+                    opacity: _opacityAnimation!.value,
+                    child: widget.widget,
+                  ),
+          );
+        }
+
+        return Opacity(
+          opacity: _opacityAnimation!.value,
+          child: widget.widget,
         );
       },
     );

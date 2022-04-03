@@ -68,7 +68,7 @@ class _MenuState extends State<Menu> {
                   Row(
                     children: [
                       AnimatedContainer(
-                        duration: const Duration(milliseconds: 200),
+                        duration: const Duration(milliseconds: 300),
                         height: _screenUtil.setWidth(_size),
                         width: _screenUtil.setWidth(_size),
                         decoration: BoxDecoration(
@@ -79,7 +79,7 @@ class _MenuState extends State<Menu> {
                         ),
                       ),
                       AnimatedContainer(
-                        duration: const Duration(milliseconds: 200),
+                        duration: const Duration(milliseconds: 300),
                         margin: EdgeInsets.symmetric(
                           horizontal: _screenUtil.setWidth(3.5),
                         ),
@@ -93,7 +93,7 @@ class _MenuState extends State<Menu> {
                         ),
                       ),
                       AnimatedContainer(
-                        duration: const Duration(milliseconds: 200),
+                        duration: const Duration(milliseconds: 300),
                         height: _screenUtil.setWidth(_size),
                         width: _screenUtil.setWidth(_size),
                         decoration: BoxDecoration(
@@ -108,7 +108,7 @@ class _MenuState extends State<Menu> {
                   Row(
                     children: [
                       AnimatedContainer(
-                        duration: const Duration(milliseconds: 200),
+                        duration: const Duration(milliseconds: 300),
                         height: _screenUtil.setWidth(_size),
                         width: _screenUtil.setWidth(_size),
                         decoration: BoxDecoration(
@@ -123,7 +123,7 @@ class _MenuState extends State<Menu> {
                         builder:
                             (BuildContext context, bool value, Widget? child) =>
                                 AnimatedContainer(
-                          duration: const Duration(milliseconds: 200),
+                          duration: const Duration(milliseconds: 300),
                           margin: EdgeInsets.all(
                             _screenUtil.setWidth(3.5),
                           ),
@@ -140,7 +140,7 @@ class _MenuState extends State<Menu> {
                         ),
                       ),
                       AnimatedContainer(
-                        duration: const Duration(milliseconds: 200),
+                        duration: const Duration(milliseconds: 300),
                         height: _screenUtil.setWidth(_size),
                         width: _screenUtil.setWidth(_size),
                         decoration: BoxDecoration(
@@ -155,7 +155,7 @@ class _MenuState extends State<Menu> {
                   Row(
                     children: [
                       AnimatedContainer(
-                        duration: const Duration(milliseconds: 200),
+                        duration: const Duration(milliseconds: 300),
                         height: _screenUtil.setWidth(_size),
                         width: _screenUtil.setWidth(_size),
                         decoration: BoxDecoration(
@@ -166,7 +166,7 @@ class _MenuState extends State<Menu> {
                         ),
                       ),
                       AnimatedContainer(
-                        duration: const Duration(milliseconds: 200),
+                        duration: const Duration(milliseconds: 300),
                         margin: EdgeInsets.symmetric(
                           horizontal: _screenUtil.setWidth(3.5),
                         ),
@@ -180,7 +180,7 @@ class _MenuState extends State<Menu> {
                         ),
                       ),
                       AnimatedContainer(
-                        duration: const Duration(milliseconds: 200),
+                        duration: const Duration(milliseconds: 300),
                         height: _screenUtil.setWidth(_size),
                         width: _screenUtil.setWidth(_size),
                         decoration: BoxDecoration(

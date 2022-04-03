@@ -16,26 +16,32 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> with TickerProviderStateMixin {
   late final AnimationController topAnimation,
       bottomAnimation,
-      optionsAnimation;
+      menuAnimation,
+      footerAnimation;
 
   @override
   void initState() {
     super.initState();
 
     topAnimation = AnimationController(
-        duration: const Duration(milliseconds: 200), vsync: this);
+        duration: const Duration(milliseconds: 500), vsync: this);
 
     bottomAnimation = AnimationController(
-        duration: const Duration(milliseconds: 200), vsync: this);
+        duration: const Duration(milliseconds: 400), vsync: this);
 
-    optionsAnimation = AnimationController(
-        duration: const Duration(milliseconds: 200), vsync: this);
+    menuAnimation = AnimationController(
+        duration: const Duration(milliseconds: 300), vsync: this);
+
+    footerAnimation = AnimationController(
+        duration: const Duration(milliseconds: 300), vsync: this);
 
     Future.delayed(
       const Duration(milliseconds: 1500),
     ).then((value) => topAnimation.forward().whenComplete(() => bottomAnimation
         .forward()
-        .whenComplete(() => optionsAnimation.forward())));
+        .whenComplete(() => menuAnimation
+            .forward()
+            .whenComplete(() => footerAnimation.forward()))));
   }
 
   @override
@@ -75,7 +81,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                         child: CustomAnimation(
                           animationController: topAnimation,
                           playAnimation: false,
-                          customAnimationType: CustomAnimationType.topToBottom,
+                          customAnimationType: CustomAnimationType.fadeIn,
                           widget: Text(
                             "Ali Akbar",
                             style: GoogleFonts.bebasNeue(
@@ -89,13 +95,13 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                           ),
                         ),
                       ),
-                      Menu(animationController: optionsAnimation),
+                      Menu(animationController: menuAnimation),
                     ],
                   ),
                   CustomAnimation(
                     animationController: bottomAnimation,
                     playAnimation: false,
-                    customAnimationType: CustomAnimationType.bottomToTop,
+                    customAnimationType: CustomAnimationType.fadeIn,
                     widget: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
@@ -132,7 +138,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                     ),
                   ),
                   Footer(
-                    animationController: optionsAnimation,
+                    animationController: footerAnimation,
                   )
                 ],
               ),
