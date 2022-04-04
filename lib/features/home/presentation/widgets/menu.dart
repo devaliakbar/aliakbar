@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:aliakbar/core/animation/custom_animation.dart';
+import 'package:aliakbar/core/animation/page_transition.dart';
 import 'package:aliakbar/core/theme/app_theme.dart';
+import 'package:aliakbar/features/home/presentation/screen/app_drawer.dart';
 import 'package:aliakbar/features/home/presentation/widgets/tapped.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -79,7 +81,14 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
             valueListenable: _isHover,
             builder: (BuildContext context, bool isHover, Widget? child) =>
                 Tapped(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  PageTransition(
+                    child: const AppDrawer(),
+                  ),
+                );
+              },
               child: Column(
                 children: [
                   Row(
