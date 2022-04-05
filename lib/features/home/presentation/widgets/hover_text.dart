@@ -6,8 +6,10 @@ import 'package:google_fonts/google_fonts.dart';
 class HoverText extends StatelessWidget {
   final String text;
   final double? textSize;
+  final double? letterSpacing;
 
-  const HoverText({Key? key, required this.text, this.textSize})
+  const HoverText(
+      {Key? key, required this.text, this.textSize, this.letterSpacing})
       : super(key: key);
 
   @override
@@ -20,6 +22,7 @@ class HoverText extends StatelessWidget {
               child: _CharWidget(
                 char: text[index],
                 textSize: textSize,
+                letterSpacing: letterSpacing,
               ),
             )
         ],
@@ -31,8 +34,12 @@ class HoverText extends StatelessWidget {
 class _CharWidget extends StatefulWidget {
   final String char;
   final double? textSize;
+  final double? letterSpacing;
 
-  const _CharWidget({required this.char, this.textSize});
+  const _CharWidget(
+      {required this.char,
+      required this.textSize,
+      required this.letterSpacing});
 
   @override
   State<_CharWidget> createState() => _CharWidgetState();
@@ -85,8 +92,9 @@ class _CharWidgetState extends State<_CharWidget>
           style: GoogleFonts.bebasNeue(
             textStyle: TextStyle(
               color: _colorAnimation.value,
-              fontSize: widget.textSize ?? screenUtil.setSp(165),
-              letterSpacing: -1 * screenUtil.setWidth(5),
+              fontSize: screenUtil.setSp(widget.textSize ?? 165),
+              letterSpacing:
+                  -1 * screenUtil.setWidth(widget.letterSpacing ?? 5),
               height: 1,
             ),
           ),

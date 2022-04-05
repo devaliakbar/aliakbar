@@ -1,4 +1,6 @@
+import 'package:aliakbar/core/animation/perspective_pageview.dart';
 import 'package:aliakbar/core/theme/app_theme.dart';
+import 'package:aliakbar/features/home/presentation/widgets/app_drawer.dart/close_button.dart';
 import 'package:aliakbar/features/home/presentation/widgets/hover_text.dart';
 import 'package:aliakbar/features/home/presentation/widgets/tapped.dart';
 import 'package:flutter/material.dart';
@@ -15,41 +17,72 @@ class AppDrawer extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColor.background,
       body: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: _screenUtil.setWidth(30),
-          vertical: _screenUtil.setWidth(20),
+        padding: EdgeInsets.only(
+          left: _screenUtil.setWidth(30),
+          right: _screenUtil.setWidth(30),
+          top: _screenUtil.setWidth(20),
+          bottom: _screenUtil.setWidth(10),
         ),
         child: Column(
           children: [
             Row(
-              children: [
+              children: const [
                 HoverText(
                   text: "Menu",
-                  textSize: _screenUtil.setSp(80),
+                  textSize: 70,
+                  letterSpacing: 4,
                 ),
-                const Spacer(),
-                Tapped(
-                  onTap: () => Navigator.pop(context),
-                  child: Icon(
-                    Icons.close,
-                    color: AppColor.grey,
-                    size: _screenUtil.setSp(80),
-                  ),
-                )
+                Spacer(),
+                AnimatedCloseButton(),
               ],
             ),
             Expanded(
-              child: Container(),
-            ),
-            Text(
-              "Build with Flutter",
-              style: GoogleFonts.bebasNeue(
-                textStyle: TextStyle(
-                  color: AppColor.grey,
-                  fontSize: _screenUtil.setSp(18),
-                ),
+              child: PerspectivePageView(
+                hasShadow: true,
+                shadowColor: AppColor.grey.withOpacity(0.01),
+                aspectRatio: PVAspectRatio.sixteenNine,
+                children: [
+                  for (int i = 0; i < 5; i++)
+                    Tapped(
+                      onTap: () {
+                        debugPrint("Statement $i");
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: AppColor.background,
+                          border: Border.symmetric(
+                            horizontal: BorderSide(
+                              color: AppColor.grey.withOpacity(0.1),
+                              width: _screenUtil.setWidth(4),
+                            ),
+                            vertical: BorderSide(
+                              color: AppColor.grey.withOpacity(0.1),
+                              width: _screenUtil.setWidth(2),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
               ),
             ),
+            SizedBox(
+              height: _screenUtil.setHeight(30),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Build with Flutter",
+                  style: GoogleFonts.bebasNeue(
+                    textStyle: TextStyle(
+                      color: AppColor.grey,
+                      fontSize: _screenUtil.setSp(16),
+                    ),
+                  ),
+                ),
+              ],
+            )
           ],
         ),
       ),
