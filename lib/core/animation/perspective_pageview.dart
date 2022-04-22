@@ -6,18 +6,25 @@ enum PVAspectRatio {
   sixteenNine,
 }
 
+typedef OnPageChange = void Function(double page);
+
 class PerspectivePageView extends StatefulWidget {
   final List<Widget> children;
+  final int currentPage;
   final bool hasShadow;
+
   final Color? shadowColor;
   final PVAspectRatio? aspectRatio;
+  final OnPageChange? onPageChange;
 
   const PerspectivePageView({
     Key? key,
     required this.children,
+    this.currentPage = 1,
     this.hasShadow = false,
     this.shadowColor,
     this.aspectRatio,
+    this.onPageChange,
   }) : super(key: key);
 
   @override
@@ -43,10 +50,14 @@ class _PerspectivePageViewState extends State<PerspectivePageView> {
   @override
   void initState() {
     super.initState();
-    holder = PageValueHolder(2.0);
-    _controller = PageController(initialPage: 2, viewportFraction: fraction);
+    holder = PageValueHolder(widget.currentPage.toDouble());
+    _controller = PageController(
+        initialPage: widget.currentPage, viewportFraction: fraction);
     _controller.addListener(() {
       holder.setValue(_controller.page);
+      if (widget.onPageChange != null) {
+        widget.onPageChange!(_controller.page ?? 0);
+      }
     });
   }
 

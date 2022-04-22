@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:aliakbar/core/theme/app_theme.dart';
-import 'package:aliakbar/features/home/presentation/widgets/tapped.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -72,7 +71,8 @@ class _AnimatedCloseButtonState extends State<AnimatedCloseButton>
         child: ValueListenableBuilder<bool>(
           valueListenable: _isHover,
           builder: (BuildContext context, bool isHover, Widget? child) =>
-              Tapped(
+              GestureDetector(
+            behavior: HitTestBehavior.opaque,
             onTap: () {
               Navigator.pop(context);
             },
