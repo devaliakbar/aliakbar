@@ -1,8 +1,8 @@
 import 'package:aliakbar/core/animation/custom_animation.dart';
-import 'package:aliakbar/features/home/presentation/widgets/footer/footer.dart';
+import 'package:aliakbar/features/home/presentation/widgets/home/footer/footer.dart';
+import 'package:aliakbar/features/home/presentation/widgets/home/landing/hyphen.dart';
 import 'package:aliakbar/features/home/presentation/widgets/hover_text.dart';
-import 'package:aliakbar/features/home/presentation/widgets/landing/hyphen.dart';
-import 'package:aliakbar/features/home/presentation/widgets/menu.dart';
+import 'package:aliakbar/features/home/presentation/widgets/home/menu.dart';
 import 'package:flutter/material.dart';
 
 class Landing extends StatefulWidget {

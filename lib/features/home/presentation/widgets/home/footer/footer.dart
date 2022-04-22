@@ -1,6 +1,6 @@
 import 'package:aliakbar/core/animation/custom_animation.dart';
-import 'package:aliakbar/features/home/presentation/widgets/custom_icon_button.dart';
-import 'package:aliakbar/features/home/presentation/widgets/footer/arrow_right.dart';
+import 'package:aliakbar/features/home/presentation/widgets/home/custom_icon_button.dart';
+import 'package:aliakbar/features/home/presentation/widgets/home/footer/arrow_right.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';

@@ -2,6 +2,7 @@ import 'package:aliakbar/core/animation/perspective_pageview.dart';
 import 'package:aliakbar/core/theme/app_theme.dart';
 import 'package:aliakbar/core/utils/utils.dart';
 import 'package:aliakbar/features/home/presentation/widgets/app_drawer.dart/close_button.dart';
+import 'package:aliakbar/features/home/presentation/widgets/app_drawer.dart/flutter_text.dart';
 import 'package:aliakbar/features/home/presentation/widgets/hover_text.dart';
 import 'package:aliakbar/features/home/presentation/widgets/tapped.dart';
 import 'package:flutter/material.dart';
@@ -154,15 +155,7 @@ class _AppDrawerState extends State<AppDrawer> {
                     ),
                   ),
                 ),
-                Text(
-                  "Flutter",
-                  style: GoogleFonts.bebasNeue(
-                    textStyle: TextStyle(
-                      color: AppColor.textColor,
-                      fontSize: _screenUtil.setSp(15),
-                    ),
-                  ),
-                ),
+                const FlutterText(),
               ],
             )
           ],

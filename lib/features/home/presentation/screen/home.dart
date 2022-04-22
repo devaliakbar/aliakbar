@@ -1,5 +1,5 @@
 import 'package:aliakbar/core/theme/app_theme.dart';
-import 'package:aliakbar/features/home/presentation/widgets/landing/landing.dart';
+import 'package:aliakbar/features/home/presentation/widgets/home/landing/landing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
